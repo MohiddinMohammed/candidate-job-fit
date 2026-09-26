@@ -278,7 +278,7 @@ export default function Home() {
                 I turn ambiguous business problems into clear product decisions, technical plans and usable digital products.
               </p>
               <p className="muted mt-5 max-w-2xl">
-                I work across product discovery, requirements, technical delivery, AI, automation and B2B SaaS — connecting user needs, business context and engineering reality.
+                I connect product strategy with technical execution — from discovery and requirements to AI, automation and shipped B2B SaaS workflows.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <a className="focus-ring inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="#work">
