@@ -15,6 +15,47 @@ const cases: CaseStudy[] = [
 
   { id:"collaboration", category:["B2B SaaS","Product Ownership","Automation","Python · SQL · APIs"] as Category[], label:"ARBOUR · COLLABORATION", title:"Making Shared Product Workflows Visible and Auditable", tags:["Collaboration","Permissions","Audit History","Operational UX"], summary:"Designed the collaboration layer around shared investor work: controlled access, visible presence and change history so teams could work in the same data environment with clearer accountability.", meta:[["Role","Product Owner · Full Stack Engineer"],["Focus","Collaborative workflows"],["Scope","Access · presence · history"]], flow:["Share the workspace","Set permissions","See active users","Edit shared data","Record changes","Review history"], details:[["The problem","Investor workflows were increasingly collaborative, which introduced a second product problem beyond editing data: users needed to know who could access a workspace and understand what had changed over time."],["What I investigated","I worked through the access model, shared-workspace behaviour and the points where edits needed traceability. The implementation separates view and edit permissions, tracks active sheet presence and stores cell-level change information."],["Product decision","Treat collaboration as part of the product workflow rather than as an afterthought. Sharing should have explicit permissions, active users should have a visible presence state, and important edits should leave a history that can be reviewed."],["Access and sharing","Sheet and consolidated-workspace sharing supports view or edit permissions. Owners control sharing, registered users receive direct links, and access is checked alongside the existing folder and sheet permissions."],["Presence","The product tracks a user's sheet, device and browser-tab context together with view/edit mode, active/idle/away status and a last-ping timestamp. This creates a lightweight presence model for shared operational work."],["Audit history","Changes are stored with the sheet, row, investor, column, old value, new value, timestamp and related context. That makes it possible to inspect how an investor record changed rather than only seeing its latest state."],["Technical contribution","Built across React and Python/Flask with SQLAlchemy-backed sharing, presence and change-log models, authenticated access checks and email-based sharing flows."],["Why this mattered","As a product becomes a shared system of record, collaboration needs more than a multi-user UI. Permissions and history help make shared work understandable and accountable."],["Reflection","Collaboration features are product infrastructure. The useful question is not only 'can two people edit the same data?' but 'can they understand access, activity and change without creating extra coordination work?'"]], technical:["React","Python / Flask","SQL / SQLAlchemy","Permissions & access control","Presence tracking","Cell-level change history"] },
 
+  {
+    id:"historical-investments",
+    category:["B2B SaaS","Product Ownership","Python · SQL · APIs"] as Category[],
+    label:"ARBOUR · INVESTOR INTELLIGENCE",
+    title:"Adding Historical Investment Context to Investor Profiles",
+    tags:["Historical Data","Investor Intelligence","Data Matching","Workflow Design"],
+    summary:"Extended investor profiles with historical investment records so teams could see prior investment context alongside current pipeline information.",
+    meta:[
+      ["Role","Product Owner · Full Stack Engineer"],
+      ["Focus","Historical investment intelligence"],
+      ["Scope","Import · matching · investor context"]
+    ],
+    flow:[
+      "Historical investment file",
+      "Dry-run & inspect matches",
+      "Resolve ambiguous investors",
+      "Import historical records",
+      "Combine with tracker history",
+      "Review investor context"
+    ],
+    details:[
+      ["The problem","Historical investment information existed outside the current investor workflow. Without that context, users had to reconstruct an investor's previous activity separately from the current pipeline."],
+      ["What I investigated","I traced how historical investment rows could be imported, matched to existing investors and surfaced alongside current investor information. The workflow needed a safe way to identify unresolved matches before records were committed."],
+      ["Product decision","Treat historical investment data as structured investor context rather than a one-off file attachment. The import workflow should support inspection and resolution before the historical records become part of the product's investor view."],
+      ["How the workflow works","Historical CSV or XLSX data can be processed through a dry-run first. The result identifies matched and unresolved rows, allowing ambiguous investors to be resolved before the final import."],
+      ["Data captured","Historical records can include investor, GP, fund, partner, ticket size, investment date and year, together with source information used to keep imported records traceable."],
+      ["Investor context","Imported history is combined with tracker-derived investment history and surfaced in investor details, giving users historical context alongside the current investor record."],
+      ["Technical contribution","Built the workflow across React and Python/Flask with SQLAlchemy-backed historical investment modelling, CSV/XLSX parsing, investor matching, date and ticket-size parsing, safe upsert behaviour and investor-detail integration."],
+      ["Why this mattered","Historical investment context can change how a current investor relationship is understood. Bringing that information into the same workflow reduces the need to reconstruct prior activity outside the product."],
+      ["Reflection","Historical data becomes more useful when it is matched, structured and placed where decisions already happen. The import workflow also needs to make ambiguity visible rather than silently guessing."],
+    ],
+    technical:[
+      "React",
+      "Python / Flask",
+      "SQL / SQLAlchemy",
+      "CSV / XLSX import",
+      "Investor matching",
+      "Historical data modelling"
+    ]
+  },
+
   { id:"excel", category:["B2B SaaS","Product Ownership"] as Category[], label:"PRODUCT JUDGEMENT", title:"When a Technically Simple Feature Wasn't the Right Product Decision", tags:["Product Strategy","Stakeholders","Workflow Design"], summary:"Challenged a technically simple upload feature because it could reinforce the workflow the product was trying to replace.", details:[["Context","Engineering proposed allowing users to upload Excel files to automatically populate the product."],["My concern","If every user could upload Excel files, users might continue doing their core work in Excel and use the platform mainly as a data-upload tool."],["Product goal","Move the user's core workflow into the platform."],["Decision","After discussion with engineering and stakeholders, upload functionality was made available to administrators rather than normal users."],["Why it mattered","The constraint aligned the feature with the intended workflow instead of optimising only for technical convenience."],["Reflection","A feature being technically possible does not mean it supports the desired user behaviour or product strategy."]] }
 ];
 
