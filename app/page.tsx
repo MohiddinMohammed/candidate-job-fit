@@ -147,9 +147,195 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
   );
 }
 
-export default function Home(){const [activeCategory, setActiveCategory] = useState("B2B SaaS" as Category); const visibleCases=cases.filter(c=>c.category.includes(activeCategory)); return <><Header/><main id="top"><section className="container-page grid min-h-[calc(100vh-4rem)] items-center py-20 sm:py-28"><div className="grid items-center gap-14 lg:grid-cols-[1.15fr_.85fr]"><div><p className="eyebrow">Berlin, Germany · Product · Technology · Execution</p><h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.055em] sm:text-7xl">Gouse Mohiddin Mohammed</h1><p className="mt-6 text-lg font-medium text-sage sm:text-xl">Product Owner · Technical Product Manager · AI & SaaS</p><p className="mt-7 max-w-2xl text-xl leading-8 text-slate-700 sm:text-2xl sm:leading-9">I turn ambiguous business problems into clear product decisions, technical plans and usable digital products.</p><p className="muted mt-5 max-w-2xl">I work across product discovery, requirements, technical delivery, AI, automation and B2B SaaS — connecting user needs, business context and engineering reality.</p><div className="mt-9 flex flex-wrap gap-3"><a className="focus-ring inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="#work">View my work <ArrowDownRight size={16}/></a><a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href="/resume.pdf" download>Download CV <Download size={16}/></a><a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href={linkedinHref} target="_blank" rel="noreferrer">LinkedIn <ExternalLink size={15}/></a></div></div><div className="product-system" aria-label="Product thinking system"><div className="system-top"><span>PRODUCT SYSTEM</span><span className="system-status">● LIVE THINKING</span></div><div className="system-core"><div className="core-ring ring-a"></div><div className="core-ring ring-b"></div><div className="core-center">P</div><div className="node node-1"><span>01</span>Problem</div><div className="node node-2"><span>02</span>Data</div><div className="node node-3"><span>03</span>Decision</div><div className="node node-4"><span>04</span>Build</div></div><div className="system-bottom"><span>Business</span><span>↔</span><span>Technology</span><span>↔</span><span>Users</span></div></div></div><div className="mt-16 max-w-5xl overflow-x-auto rounded-2xl border border-line bg-white p-1"><div className="flex min-w-max gap-1">{categories.map(x=><button type="button" key={x} onClick={()=>setActiveCategory(x)} aria-pressed={activeCategory===x} className={`focus-ring rounded-xl px-4 py-3 text-sm font-semibold transition sm:px-5 ${activeCategory===x?"bg-ink text-white":"text-slate-600 hover:bg-mint hover:text-ink"}`}>{x}</button>)}</div></div></div></section>
-<section id="work" className="container-page scroll-mt-20 py-20 sm:py-28"><p className="eyebrow">Selected work</p><h2 className="section-title">A product portfolio built around decisions, not buzzwords.</h2><p className="muted mt-5 max-w-2xl">These cases focus on the problem, the investigation, the decision and the contribution — including where technical context mattered.</p><div className="mt-10 space-y-6">{visibleCases.length>0&&visibleCases[0].id==="fil-ai"&&<CaseCard key="fil-ai" c={visibleCases[0]} featured/>}<div className={`grid gap-5 ${visibleCases.length>0&&visibleCases[0].id==="fil-ai"?"md:grid-cols-2":""}`}>{visibleCases.filter(c=>c.id!=="fil-ai").map(c=><CaseCard key={c.id} c={c}/>)}</div></div><p className="muted mt-7 text-xs">Examples are based on professional experience. Confidential company information, customer data and proprietary implementation details have been omitted or recreated.</p></section>
-<section id="how" className="scroll-mt-20 border-y border-line bg-white py-20 sm:py-28"><div className="container-page"><p className="eyebrow">How I think</p><h2 className="section-title">A practical loop from ambiguity to improvement.</h2><div className="mt-12 grid gap-3 md:grid-cols-7">{[["01","Understand","Talk to users and stakeholders; clarify the problem."],["02","Investigate","Use data, workflows and technical context to understand what is really happening."],["03","Define","Translate the problem into clear requirements and user outcomes."],["04","Decide","Make trade-offs across user needs, business goals and technical reality."],["05","Build","Work closely with engineering and design."],["06","Measure","Look at adoption, efficiency, quality and operational impact."],["07","Improve","Use feedback and data to iterate."]].map(([n,t,d])=><div key={t} className="card p-5"><span className="text-xs font-semibold text-sage">{n}</span><h3 className="mt-4 font-semibold">{t}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{d}</p></div>)}</div></div></section>
-<section id="about" className="container-page scroll-mt-20 py-20 sm:py-28"><div className="grid gap-12 lg:grid-cols-[1.1fr_.9fr]"><div><p className="eyebrow">About</p><h2 className="section-title">Product-minded, technically fluent, grounded in execution.</h2><p className="muted mt-6 max-w-2xl">My background combines Product Owner and Full Stack Engineer experience at Arbour with AI product management work, business development, product operations and data/ML experience. I enjoy working where the problem is still slightly messy and the team needs someone who can connect business context to technical delivery.</p><div className="mt-8 grid gap-3 sm:grid-cols-2"><div className="card p-5"><p className="eyebrow">Recent experience</p><div className="mt-3 space-y-4 text-sm leading-6"><div><p className="font-semibold text-ink">Product Owner & Full Stack Engineer · Arbour</p><p className="text-slate-500">Nov 2024 – May 2026 · Berlin (Remote)</p></div><div><p className="font-semibold text-ink">Product Manager · FIL AI initiative</p><p className="text-slate-500">4–5 months · within Arbour</p></div><div><p className="font-semibold text-ink">Business Development Intern · MetalMaker3D</p><p className="text-slate-500">Apr 2023 – Aug 2023 · Remote</p></div></div></div><div className="card p-5"><p className="eyebrow">Education</p><p className="mt-3 text-sm leading-7">Master's in International Technology Transfer Management · FHM<br/>Bachelor's in Mechanical Engineering · Andhra University</p></div></div></div><div className="card p-7"><p className="eyebrow">Technical fluency</p><ul className="mt-5 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">{["Python","SQL","React","REST APIs","Git / GitHub Actions","Cloud systems","Data analysis","Dashboards","Figma","Jira","Confluence","Miro"].map(x=><li className="flex items-center gap-3" key={x}><span className="h-1.5 w-1.5 rounded-full bg-sage"/>{x}</li>)}</ul></div></div></section>
-<section id="resume" className="border-y border-line bg-mint py-16"><div className="container-page flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><div><p className="eyebrow">Resume</p><h2 className="mt-2 text-2xl font-semibold">Want the one-page version?</h2><p className="muted mt-2">A concise CV for applications and recruiter screens.</p></div><a className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="/resume.pdf" download>Download Resume <Download size={16}/></a></div></section>
-<section id="contact" className="container-page scroll-mt-20 py-20 sm:py-28"><div className="max-w-3xl"><p className="eyebrow">Contact</p><h2 className="section-title">Interested in working together?</h2><p className="muted mt-5">For product, product operations, technical product or digital transformation conversations, the easiest route is email or LinkedIn.</p><div className="mt-8 flex flex-wrap gap-3"><a className="focus-ring inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="mailto:mohiddinmohammed24@gmail.com"><Mail size={16}/> Email</a><a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href="https://www.linkedin.com/in/mohammed-8472781a7/" target="_blank" rel="noreferrer"><Linkedin size={16}/> LinkedIn</a><a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href="https://github.com/MohiddinMohammed" target="_blank" rel="noreferrer"><Github size={16}/> GitHub</a></div></div></section></main><footer className="border-t border-line py-8"><div className="container-page flex flex-col gap-2 text-xs text-slate-500 sm:flex-row sm:justify-between"><span>© {new Date().getFullYear()} Gouse Mohiddin Mohammed</span><span>Berlin, Germany · Product · Technology · Execution</span></div></footer></>}
+export default function Home() {
+  const [activeCategory, setActiveCategory] = useState<Category>("B2B SaaS");
+  const visibleCases = cases.filter((c) => c.category.includes(activeCategory));
+
+  return (
+    <>
+      <Header />
+      <main id="top">
+        <section className="container-page grid min-h-[calc(100vh-4rem)] items-center py-20 sm:py-28">
+          <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
+            <div>
+              <p className="eyebrow">Berlin, Germany · Product · Technology · Execution</p>
+              <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.055em] sm:text-7xl">
+                Gouse Mohiddin Mohammed
+              </h1>
+              <p className="mt-6 text-lg font-medium text-sage sm:text-xl">
+                Product Owner · Technical Product Manager · AI & SaaS
+              </p>
+              <p className="mt-7 max-w-2xl text-xl leading-8 text-slate-700 sm:text-2xl sm:leading-9">
+                I turn ambiguous business problems into clear product decisions, technical plans and usable digital products.
+              </p>
+              <p className="muted mt-5 max-w-2xl">
+                I work across product discovery, requirements, technical delivery, AI, automation and B2B SaaS — connecting user needs, business context and engineering reality.
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <a className="focus-ring inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="#work">
+                  View my work <ArrowDownRight size={16} />
+                </a>
+                <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href="/resume.pdf" download>
+                  Download CV <Download size={16} />
+                </a>
+                <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href={linkedinHref} target="_blank" rel="noreferrer">
+                  LinkedIn <ExternalLink size={15} />
+                </a>
+              </div>
+            </div>
+
+            <div className="product-system" aria-label="Product thinking system">
+              <div className="system-top">
+                <span>PRODUCT SYSTEM</span>
+                <span className="system-status">● LIVE THINKING</span>
+              </div>
+              <div className="system-core">
+                <div className="core-ring ring-a"></div>
+                <div className="core-ring ring-b"></div>
+                <div className="core-center">P</div>
+                <div className="node node-1"><span>01</span>Problem</div>
+                <div className="node node-2"><span>02</span>Data</div>
+                <div className="node node-3"><span>03</span>Decision</div>
+                <div className="node node-4"><span>04</span>Build</div>
+              </div>
+              <div className="system-bottom">
+                <span>Business</span><span>↔</span><span>Technology</span><span>↔</span><span>Users</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 max-w-5xl overflow-x-auto rounded-2xl border border-line bg-white p-1">
+            <div className="flex min-w-max gap-1">
+              {categories.map((x) => (
+                <button
+                  type="button"
+                  key={x}
+                  onClick={() => setActiveCategory(x)}
+                  aria-pressed={activeCategory === x}
+                  className={`focus-ring rounded-xl px-4 py-3 text-sm font-semibold transition sm:px-5 ${activeCategory === x ? "bg-ink text-white" : "text-slate-600 hover:bg-mint hover:text-ink"}`}
+                >
+                  {x}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="work" className="container-page scroll-mt-20 py-20 sm:py-28">
+          <p className="eyebrow">Selected work</p>
+          <h2 className="section-title">A product portfolio built around decisions, not buzzwords.</h2>
+          <p className="muted mt-5 max-w-2xl">
+            These cases focus on the problem, the investigation, the decision and the contribution — including where technical context mattered.
+          </p>
+          <div className="mt-10 space-y-6">
+            {visibleCases.length > 0 && visibleCases[0].id === "fil-ai" && (
+              <CaseCard key="fil-ai" c={visibleCases[0]} featured />
+            )}
+            <div className={`grid gap-5 ${visibleCases.length > 0 && visibleCases[0].id === "fil-ai" ? "md:grid-cols-2" : ""}`}>
+              {visibleCases.filter((c) => c.id !== "fil-ai").map((c) => (
+                <CaseCard key={c.id} c={c} />
+              ))}
+            </div>
+          </div>
+          <p className="muted mt-7 text-xs">
+            Examples are based on professional experience. Confidential company information, customer data and proprietary implementation details have been omitted or recreated.
+          </p>
+        </section>
+
+        <section id="how" className="scroll-mt-20 border-y border-line bg-white py-20 sm:py-28">
+          <div className="container-page">
+            <p className="eyebrow">How I think</p>
+            <h2 className="section-title">A practical loop from ambiguity to improvement.</h2>
+            <div className="mt-12 grid gap-3 md:grid-cols-7">
+              {[
+                ["01", "Understand", "Talk to users and stakeholders; clarify the problem."],
+                ["02", "Investigate", "Use data, workflows and technical context to understand what is really happening."],
+                ["03", "Define", "Translate the problem into clear requirements and user outcomes."],
+                ["04", "Decide", "Make trade-offs across user needs, business goals and technical reality."],
+                ["05", "Build", "Work closely with engineering and design."],
+                ["06", "Measure", "Look at adoption, efficiency, quality and operational impact."],
+                ["07", "Improve", "Use feedback and data to iterate."],
+              ].map(([n, t, d]) => (
+                <div key={t} className="card p-5">
+                  <span className="text-xs font-semibold text-sage">{n}</span>
+                  <h3 className="mt-4 font-semibold">{t}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="container-page scroll-mt-20 py-20 sm:py-28">
+          <div className="grid gap-12 lg:grid-cols-[1.1fr_.9fr]">
+            <div>
+              <p className="eyebrow">About</p>
+              <h2 className="section-title">Product-minded, technically fluent, grounded in execution.</h2>
+              <p className="muted mt-6 max-w-2xl">
+                My background combines Product Owner and Full Stack Engineer experience at Arbour with AI product management work, business development, product operations and data/ML experience. I enjoy working where the problem is still slightly messy and the team needs someone who can connect business context to technical delivery.
+              </p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <div className="card p-5">
+                  <p className="eyebrow">Recent experience</p>
+                  <div className="mt-3 space-y-4 text-sm leading-6">
+                    <div><p className="font-semibold text-ink">Product Owner & Full Stack Engineer · Arbour</p><p className="text-slate-500">Nov 2024 – May 2026 · Berlin (Remote)</p></div>
+                    <div><p className="font-semibold text-ink">Product Manager · FIL AI initiative</p><p className="text-slate-500">4–5 months · within Arbour</p></div>
+                    <div><p className="font-semibold text-ink">Business Development Intern · MetalMaker3D</p><p className="text-slate-500">Apr 2023 – Aug 2023 · Remote</p></div>
+                  </div>
+                </div>
+                <div className="card p-5">
+                  <p className="eyebrow">Education</p>
+                  <p className="mt-3 text-sm leading-7">
+                    Master's in International Technology Transfer Management · FHM<br />
+                    Bachelor’s in Mechanical Engineering · Andhra University
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="card p-7">
+              <p className="eyebrow">Technical fluency</p>
+              <ul className="mt-5 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+                {["Python", "SQL", "React", "REST APIs", "Git / GitHub Actions", "Cloud systems", "Data analysis", "Dashboards", "Figma", "Jira", "Confluence", "Miro"].map((x) => (
+                  <li className="flex items-center gap-3" key={x}><span className="h-1.5 w-1.5 rounded-full bg-sage" />{x}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="resume" className="border-y border-line bg-mint py-16">
+          <div className="container-page flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="eyebrow">Resume</p>
+              <h2 className="mt-2 text-2xl font-semibold">Want the one-page version?</h2>
+              <p className="muted mt-2">A concise CV for applications and recruiter screens.</p>
+            </div>
+            <a className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="/resume.pdf" download>
+              Download Resume <Download size={16} />
+            </a>
+          </div>
+        </section>
+
+        <section id="contact" className="container-page scroll-mt-20 py-20 sm:py-28">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Contact</p>
+            <h2 className="section-title">Interested in working together?</h2>
+            <p className="muted mt-5">For product, product operations, technical product or digital transformation conversations, the easiest route is email or LinkedIn.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a className="focus-ring inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="mailto:mohiddinmohammed24@gmail.com"><Mail size={16} /> Email</a>
+              <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href={linkedinHref} target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
+              <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href="https://github.com/MohiddinMohammed" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-line py-8">
+        <div className="container-page flex flex-col gap-2 text-xs text-slate-500 sm:flex-row sm:justify-between">
+          <span>© {new Date().getFullYear()} Gouse Mohiddin Mohammed</span>
+          <span>Berlin, Germany · Product · Technology · Execution</span>
+        </div>
+      </footer>
+    </>
+  );
+}
