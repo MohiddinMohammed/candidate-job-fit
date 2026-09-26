@@ -210,7 +210,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main id="top">
+      <main id="top"><a className="skip-link focus-ring" href="#work">Skip to selected work</a>
         <section className="container-page grid min-h-[calc(100svh-4rem)] items-center py-14 sm:min-h-[calc(100vh-4rem)] sm:py-28">
           <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
             <div>
