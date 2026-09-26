@@ -40,3 +40,7 @@
 .skip-link:focus{top:20px}
 .focus-ring:focus-visible{outline:3px solid #718f78;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.skip-link{transition:none}}
+
+@media (min-width:768px){
+  #how,#about,#resume,#contact{content-visibility:auto;contain-intrinsic-size:700px}
+}
