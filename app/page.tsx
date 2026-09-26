@@ -165,7 +165,7 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
         {c.meta && <div className="mt-7 grid gap-3 border-t border-line pt-5 sm:grid-cols-3">{c.meta.map(([key,value]) => <div key={key}><p className="eyebrow">{key}</p><p className="mt-1 text-sm font-medium text-ink">{value}</p></div>)}</div>}
         <div className="mt-6 text-sm font-semibold text-sage">{expanded ? "Close case study" : "Read full case study"} <span className="ml-1">→</span></div>
       </button>
-      {expanded && <div className="border-t border-line bg-paper/50 px-6 pb-8 sm:px-8 sm:pb-10"><div className="pt-8">
+      {expanded && <div className="case-detail border-t border-line bg-paper/50 px-6 pb-8 sm:px-8 sm:pb-10"><div className="pt-8">
         {c.flow && <><p className="eyebrow">Product flow</p><div className="mt-4 flex flex-wrap items-center gap-2">{c.flow.map((step,index) => <div key={step} className="flex items-center gap-2"><span className="rounded-full border border-line bg-white px-3 py-2 text-xs font-medium text-slate-700">{step}</span>{index < c.flow!.length - 1 && <span className="hidden text-slate-300 sm:inline">→</span>}</div>)}</div></>}
         {c.visuals && <div className="mt-10 rounded-2xl border border-line bg-white p-5 sm:p-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
