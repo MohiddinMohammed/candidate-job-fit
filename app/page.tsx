@@ -148,18 +148,18 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
 
   return (
     <>
-      <article id={c.id} className={\`scroll-mt-24 group overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md \${featured ? "featured-case lg:shadow-sm" : ""}\`}>
+      <article id={c.id} className={`scroll-mt-24 group overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${featured ? "featured-case lg:shadow-sm" : ""}`}>
         <button
           type="button"
           onClick={() => setExpanded(true)}
           aria-expanded={expanded}
-          aria-controls={\`\${c.id}-dialog\`}
+          aria-controls={`${c.id}-dialog`}
           className="focus-ring block w-full p-6 text-left sm:p-8"
         >
           <div className="flex items-start justify-between gap-5">
             <div>
               <p className="eyebrow">{c.label}</p>
-              <h3 className={\`mt-2 font-semibold tracking-tight \${featured ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl"}\`}>{c.title}</h3>
+              <h3 className={`mt-2 font-semibold tracking-tight ${featured ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl"}`}>{c.title}</h3>
               <p className="muted mt-4 max-w-3xl text-base">{c.summary}</p>
             </div>
             <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-slate-600">
@@ -179,10 +179,10 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
 
       {expanded && (
         <div
-          id={\`\${c.id}-dialog\`}
+          id={`${c.id}-dialog`}
           role="dialog"
           aria-modal="true"
-          aria-labelledby={\`\${c.id}-title\`}
+          aria-labelledby={`${c.id}-title`}
           className="fixed inset-0 z-50 overflow-y-auto bg-ink/40 p-4 sm:p-8"
           onClick={() => setExpanded(false)}
         >
@@ -191,7 +191,7 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
               <div className="flex items-start justify-between gap-5 border-b border-line px-6 py-6 sm:px-10 sm:py-7">
                 <div>
                   <p className="eyebrow">{c.label}</p>
-                  <h3 id={\`\${c.id}-title\`} className="mt-2 text-2xl font-semibold tracking-tight sm:text-4xl">{c.title}</h3>
+                  <h3 id={`${c.id}-title`} className="mt-2 text-2xl font-semibold tracking-tight sm:text-4xl">{c.title}</h3>
                   <p className="muted mt-3 max-w-3xl text-sm sm:text-base">{c.summary}</p>
                 </div>
                 <button type="button" aria-label="Close case study" onClick={() => setExpanded(false)} className="focus-ring flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-slate-600">
@@ -220,7 +220,7 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
                     </div>
                     <div className="mt-6 grid gap-4 md:grid-cols-3">
                       {c.visuals.map((visual, index) => (
-                        <div key={visual.title} className={\`group overflow-hidden rounded-2xl border border-line bg-paper \${index === 1 ? "md:-translate-y-2 md:shadow-md" : ""}\`}>
+                        <div key={visual.title} className={`group overflow-hidden rounded-2xl border border-line bg-paper ${index === 1 ? "md:-translate-y-2 md:shadow-md" : ""}`}>
                           <div className="border-b border-line bg-white px-4 py-4">
                             <div className="flex items-center justify-between gap-3">
                               <p className="text-sm font-semibold">{visual.title}</p>
