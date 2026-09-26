@@ -112,7 +112,7 @@ const cases: CaseStudy[] = [
   { id:"excel", category:["B2B SaaS","Product Ownership"] as Category[], label:"PRODUCT JUDGEMENT", title:"When a Technically Simple Feature Wasn't the Right Product Decision", tags:["Product Strategy","Stakeholders","Workflow Design"], summary:"Challenged a technically simple upload feature because it could reinforce the workflow the product was trying to replace.", details:[["Context","Engineering proposed allowing users to upload Excel files to automatically populate the product."],["My concern","If every user could upload Excel files, users might continue doing their core work in Excel and use the platform mainly as a data-upload tool."],["Product goal","Move the user's core workflow into the platform."],["Decision","After discussion with engineering and stakeholders, upload functionality was made available to administrators rather than normal users."],["Why it mattered","The constraint aligned the feature with the intended workflow instead of optimising only for technical convenience."],["Reflection","A feature being technically possible does not mean it supports the desired user behaviour or product strategy."]] }
 ];
 
-function Header(){const [open,setOpen]=useState(false); const links=[["Work","#work"],["How I Think","#how"],["About","#about"],["Resume","#resume"],["Contact","#contact"]]; return <header className="sticky top-0 z-50 border-b border-line/80 bg-paper/90 backdrop-blur"><div className="container-page flex h-16 items-center justify-between"><a href="#top" className="focus-ring text-sm font-semibold">Gouse<span className="text-sage">.</span></a><nav className="hidden gap-7 md:flex">{links.map(([l,h])=><a className="focus-ring text-sm text-slate-600 hover:text-ink" key={h} href={h}>{l}</a>)}</nav><button className="focus-ring rounded-lg p-2 md:hidden" aria-label="Toggle navigation" onClick={()=>setOpen(!open)}>{open?<X size={20}/>:<Menu size={20}/>}</button></div>{open&&<nav className="border-t border-line bg-paper px-5 py-4 md:hidden">{links.map(([l,h])=><a onClick={()=>setOpen(false)} className="block py-3 text-sm" key={h} href={h}>{l}</a>)}</nav>}</header>}
+function Header(){const [open,setOpen]=useState(false); const links=[["Work","#work"],["How I Think","#how"],["About","#about"],["Resume","#resume"],["Contact","#contact"]]; return <header className="sticky top-0 z-50 border-b border-line/80 bg-paper/90 backdrop-blur"><div className="container-page flex h-16 items-center justify-between"><a href="#top" className="focus-ring text-sm font-semibold">Gouse<span className="text-sage">.</span></a><nav className="hidden gap-7 md:flex">{links.map(([l,h])=><a className="focus-ring text-sm text-slate-600 hover:text-ink" key={h} href={h}>{l}</a>)}</nav><button className="focus-ring flex h-11 w-11 items-center justify-center rounded-xl md:hidden" aria-label="Toggle navigation" onClick={()=>setOpen(!open)}>{open?<X size={20}/>:<Menu size={20}/>}</button></div>{open&&<nav className="border-t border-line bg-paper px-5 py-4 md:hidden">{links.map(([l,h])=><a onClick={()=>setOpen(false)} className="block min-h-11 py-3 text-sm" key={h} href={h}>{l}</a>)}</nav>}</header>}
 
 function ArbourVisual({ id }: { id: string }) {
   const labels: Record<string, string[]> = {
@@ -211,7 +211,7 @@ export default function Home() {
     <>
       <Header />
       <main id="top">
-        <section className="container-page grid min-h-[calc(100vh-4rem)] items-center py-20 sm:py-28">
+        <section className="container-page grid min-h-[calc(100svh-4rem)] items-center py-14 sm:min-h-[calc(100vh-4rem)] sm:py-28">
           <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
             <div>
               <p className="eyebrow">Berlin, Germany · Product · Technology · Execution</p>
@@ -268,7 +268,7 @@ export default function Home() {
                   key={x}
                   onClick={() => setActiveCategory(x)}
                   aria-pressed={activeCategory === x}
-                  className={`focus-ring rounded-xl px-4 py-3 text-sm font-semibold transition sm:px-5 ${activeCategory === x ? "bg-ink text-white" : "text-slate-600 hover:bg-mint hover:text-ink"}`}
+                  className={`focus-ring min-h-11 rounded-xl px-4 py-3 text-sm font-semibold transition sm:px-5 ${activeCategory === x ? "bg-ink text-white" : "text-slate-600 hover:bg-mint hover:text-ink"}`}
                 >
                   {x}
                 </button>
