@@ -372,21 +372,18 @@ export default function Home() {
         <section id="how" className="scroll-mt-20 border-y border-line bg-white py-20 sm:py-28">
           <div className="container-page">
             <p className="eyebrow">How I think</p>
-            <h2 className="section-title">A practical loop from ambiguity to improvement.</h2>
-            <div className="mt-12 grid gap-3 md:grid-cols-7">
+            <h2 className="section-title">A practical way to turn messy problems into shipped product decisions.</h2>
+            <div className="mt-12 grid gap-4 md:grid-cols-2">
               {[
-                ["01", "Understand", "Talk to users and stakeholders; clarify the problem."],
-                ["02", "Investigate", "Use data, workflows and technical context to understand what is really happening."],
-                ["03", "Define", "Translate the problem into clear requirements and user outcomes."],
-                ["04", "Decide", "Make trade-offs across user needs, business goals and technical reality."],
-                ["05", "Build", "Work closely with engineering and design."],
-                ["06", "Measure", "Look at adoption, efficiency, quality and operational impact."],
-                ["07", "Improve", "Use feedback and data to iterate."],
+                ["01", "Frame the problem", "Turn ambiguity into a clear product problem, user need and business context."],
+                ["02", "Find the signal", "Use workflows, data, technical constraints and stakeholder input to understand what is actually happening."],
+                ["03", "Make the product decision", "Choose the right workflow, define trade-offs and translate the decision into something engineering can build."],
+                ["04", "Ship, learn, improve", "Work closely with engineering, validate the result and use feedback and data to improve the product."],
               ].map(([n, t, d]) => (
-                <div key={t} className="card p-5">
+                <div key={t} className="card p-6 sm:p-7">
                   <span className="text-xs font-semibold text-sage">{n}</span>
-                  <h3 className="mt-4 font-semibold">{t}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{d}</p>
+                  <h3 className="mt-4 text-lg font-semibold tracking-tight">{t}</h3>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">{d}</p>
                 </div>
               ))}
             </div>
