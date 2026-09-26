@@ -242,6 +242,11 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
 
                   <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">{c.details.map(([key,value]) => <div key={key}><p className="eyebrow">{key}</p><div className="mt-2 text-sm leading-7 text-slate-700">{value}</div></div>)}</div>
                   {c.technical && <div className="mt-10 border-t border-line pt-6"><p className="eyebrow">Technical contribution</p><div className="mt-4 flex flex-wrap gap-2">{c.technical.map((item) => <span className="pill" key={item}>{item}</span>)}</div></div>}
+                  <div className="mt-10 flex justify-end border-t border-line pt-6">
+                    <button type="button" onClick={() => setExpanded(false)} className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-mint hover:text-ink">
+                      Close case study <X aria-hidden="true" size={15} />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
