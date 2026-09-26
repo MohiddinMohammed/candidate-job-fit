@@ -21,3 +21,9 @@
 .featured-case:before{content:"";display:block;height:3px;background:#7d927f}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 @media (max-width:767px){.product-system{min-height:330px}.system-core{transform:translate(-50%,-50%) scale(.82)}.node-1{left:-6px}.node-2,.node-3{right:-5px}.system-bottom{gap:7px;font-size:9px}}
+
+@keyframes caseReveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.case-detail{animation:caseReveal .32s cubic-bezier(.2,.7,.2,1) both;transform-origin:top}
+.case-detail .pill{transition:transform .2s ease,background-color .2s ease,border-color .2s ease}
+.case-detail .pill:hover{transform:translateY(-1px);background:#f1f5f0;border-color:#cbd8cc}
+@media (prefers-reduced-motion:reduce){.case-detail{animation:none}.case-detail .pill{transition:none}}
