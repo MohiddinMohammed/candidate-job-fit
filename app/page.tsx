@@ -285,14 +285,32 @@ export default function Home() {
           <p className="muted mt-5 max-w-2xl">
             These cases focus on the problem, the investigation, the decision and the contribution — including where technical context mattered.
           </p>
-          <div className="mt-10 space-y-6">
-            {visibleCases.length > 0 && visibleCases[0].id === "fil-ai" && (
-              <CaseCard key="fil-ai" c={visibleCases[0]} featured />
-            )}
-            <div className={`grid gap-5 ${visibleCases.length > 0 && visibleCases[0].id === "fil-ai" ? "md:grid-cols-2" : ""}`}>
-              {visibleCases.filter((c) => c.id !== "fil-ai").map((c) => (
-                <CaseCard key={c.id} c={c} />
-              ))}
+          <div className="mt-10">
+            <div>
+              <p className="eyebrow">Start here</p>
+              <h3 className="mt-2 text-xl font-semibold tracking-tight">Three stories that show how I work</h3>
+              <p className="muted mt-2 max-w-2xl text-sm">
+                AI product thinking, product judgement and technical execution — the three threads I want a recruiter to see first.
+              </p>
+            </div>
+            <div className="mt-6 grid gap-5 lg:grid-cols-3">
+              {["fil-ai", "duplicates", "pipeline-intelligence"].map((id) => {
+                const c = cases.find((item) => item.id === id);
+                return c ? <CaseCard key={c.id} c={c} featured /> : null;
+              })}
+            </div>
+
+            <div className="mt-14">
+              <p className="eyebrow">Supporting work</p>
+              <h3 className="mt-2 text-xl font-semibold tracking-tight">Explore the rest by focus area</h3>
+              <div className="mt-6 grid gap-5 md:grid-cols-2">
+                {visibleCases.filter((c) => !["fil-ai", "duplicates", "pipeline-intelligence"].includes(c.id)).map((c) => (
+                  <CaseCard key={c.id} c={c} />
+                ))}
+              </div>
+              {visibleCases.filter((c) => !["fil-ai", "duplicates", "pipeline-intelligence"].includes(c.id)).length === 0 && (
+                <p className="muted mt-6 text-sm">The featured stories above cover this focus area. Use another tab to explore additional work.</p>
+              )}
             </div>
           </div>
           <p className="muted mt-7 text-xs">
