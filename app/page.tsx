@@ -135,11 +135,35 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
       </button>
       {expanded && <div className="border-t border-line bg-paper/50 px-6 pb-8 sm:px-8 sm:pb-10"><div className="pt-8">
         {c.flow && <><p className="eyebrow">Product flow</p><div className="mt-4 flex flex-wrap items-center gap-2">{c.flow.map((step,index) => <div key={step} className="flex items-center gap-2"><span className="rounded-full border border-line bg-white px-3 py-2 text-xs font-medium text-slate-700">{step}</span>{index < c.flow!.length - 1 && <span className="hidden text-slate-300 sm:inline">→</span>}</div>)}</div></>}
-        {c.visuals && <div className="mt-10"><p className="eyebrow">Early product wireframes</p><div className="mt-4 grid gap-4 md:grid-cols-3">{c.visuals.map((visual) => <div key={visual.title} className="overflow-hidden rounded-2xl border border-line bg-white"><div className="border-b border-line bg-paper p-4"><p className="text-sm font-semibold">{visual.title}</p><p className="mt-1 text-xs leading-5 text-slate-500">{visual.caption}</p></div><div className="p-4"><div className="rounded-xl border border-slate-300 bg-slate-50 p-3 text-[8px] text-slate-500">
-          {visual.type === "email" && <><div className="flex gap-2 border-b border-slate-200 pb-2 font-semibold"><span>Email</span><span>Dashboard</span><span>Calendar</span><span>Notifications</span></div><div className="mt-3 grid grid-cols-[58px_1fr] gap-3"><div className="space-y-2 font-medium"><div>Inbox</div><div>Starred</div><div>Sent</div><div>Unread</div></div><div className="space-y-2"><div className="h-5 rounded bg-slate-200"/><div className="h-5 rounded bg-slate-200"/><div className="h-5 rounded bg-slate-200"/><div className="h-5 rounded bg-slate-200"/></div></div></>}
-          {visual.type === "compose" && <><div className="flex gap-2 border-b border-slate-200 pb-2 font-semibold"><span>Email</span><span>Dashboard</span><span>Calendar</span><span>Compose</span></div><div className="mt-3 font-semibold">Email subject</div><div className="mt-2 h-4 w-2/3 rounded bg-slate-200"/><div className="mt-3 h-12 rounded border border-slate-200 bg-white"/><div className="mt-3 border-y border-slate-200 py-2">Type your intent...</div><div className="mt-2 h-10 rounded border border-slate-200 bg-white p-2">AI-suggested response</div><div className="mt-3 flex gap-1"><span className="rounded border border-slate-300 px-2 py-1">Regenerate</span><span className="rounded border border-slate-300 px-2 py-1">Send</span><span className="rounded border border-slate-300 px-2 py-1">Save draft</span></div></>}
-          {visual.type === "calendar" && <><div className="flex items-center justify-between border-b border-slate-200 pb-2 font-semibold"><span>Calendar</span><span>Month</span></div><div className="mt-3 grid grid-cols-7 gap-px bg-slate-200">{Array.from({length:28}).map((_,index) => <div key={index} className="h-5 bg-white"/>)}</div><div className="mt-2 flex gap-2"><span className="rounded border border-slate-300 px-2 py-1">+ New Meeting</span><span className="rounded border border-slate-300 px-2 py-1">Search</span></div></>}
-        </div></div></div>)}</div></div>}
+        {c.visuals && <div className="mt-10 rounded-2xl border border-line bg-white p-5 sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow">Product concept · FIL</p>
+              <h4 className="mt-2 text-xl font-semibold tracking-tight">From communication to action</h4>
+            </div>
+            <p className="max-w-md text-xs leading-5 text-slate-500">Selected early wireframe concepts showing how email, AI-assisted composition and calendar workflows were connected.</p>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {c.visuals.map((visual, index) => (
+              <div key={visual.title} className={`group overflow-hidden rounded-2xl border border-line bg-paper ${index === 1 ? "md:-translate-y-2 md:shadow-md" : ""}`}>
+                <div className="border-b border-line bg-white px-4 py-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-sm font-semibold">{visual.title}</p>
+                    <span className="rounded-full border border-line px-2 py-1 text-[10px] font-semibold text-sage">{String(index + 1).padStart(2, "0")}</span>
+                  </div>
+                  <p className="mt-1 text-xs leading-5 text-slate-500">{visual.caption}</p>
+                </div>
+                <div className="p-4">
+                  <div className="min-h-[190px] rounded-xl border border-slate-300 bg-slate-50 p-3 text-[8px] text-slate-500 shadow-sm transition-transform duration-300 group-hover:scale-[1.015]">
+                    {visual.type === "email" && <><div className="flex gap-2 border-b border-slate-200 pb-2 font-semibold"><span>Email</span><span>Dashboard</span><span>Calendar</span><span>Notifications</span></div><div className="mt-4 grid grid-cols-[62px_1fr] gap-3"><div className="space-y-2 font-medium"><div>Inbox</div><div>Starred</div><div>Sent</div><div>Unread</div></div><div className="space-y-2"><div className="h-7 rounded bg-slate-200"/><div className="h-7 rounded bg-slate-200"/><div className="h-7 rounded bg-slate-200"/><div className="h-7 rounded bg-slate-200"/></div></div><div className="mt-4 rounded border border-slate-200 bg-white p-2 font-medium">Smart Actions · AI reads the thread</div></>}
+                    {visual.type === "compose" && <><div className="flex gap-2 border-b border-slate-200 pb-2 font-semibold"><span>Email</span><span>Dashboard</span><span>Calendar</span><span>Compose</span></div><div className="mt-4 font-semibold">Email subject</div><div className="mt-2 h-5 w-2/3 rounded bg-slate-200"/><div className="mt-3 h-14 rounded border border-slate-200 bg-white"/><div className="mt-3 rounded border border-slate-200 bg-white p-2">AI-suggested response</div><div className="mt-3 flex gap-1"><span className="rounded border border-slate-300 px-2 py-1">Regenerate</span><span className="rounded border border-slate-300 px-2 py-1">Send</span><span className="rounded border border-slate-300 px-2 py-1">Save draft</span></div></>}
+                    {visual.type === "calendar" && <><div className="flex items-center justify-between border-b border-slate-200 pb-2 font-semibold"><span>Calendar</span><span>Month</span></div><div className="mt-3 grid grid-cols-7 gap-px bg-slate-200">{Array.from({length:28}).map((_,index) => <div key={index} className="h-5 bg-white"/>)}</div><div className="mt-4 flex gap-2"><span className="rounded border border-slate-300 px-2 py-1">+ New Meeting</span><span className="rounded border border-slate-300 px-2 py-1">Search</span></div></>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>}
         <div className="mt-9 grid gap-x-10 gap-y-8 sm:grid-cols-2">{c.details.map(([key,value]) => <div key={key}><p className="eyebrow">{key}</p><div className="mt-2 text-sm leading-7 text-slate-700">{value}</div></div>)}</div>
         {c.technical && <div className="mt-9 border-t border-line pt-6"><p className="eyebrow">Technical contribution</p><div className="mt-4 flex flex-wrap gap-2">{c.technical.map((item) => <span className="pill" key={item}>{item}</span>)}</div></div>}
       </div></div>}
