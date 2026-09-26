@@ -1,3 +1,4 @@
+// Deployment verification: fresh source after JSX URL correction.
 "use client";
 
 import { useState } from "react";
