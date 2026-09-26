@@ -112,7 +112,7 @@ const cases: CaseStudy[] = [
   { id:"excel", category:["B2B SaaS","Product Ownership"] as Category[], label:"PRODUCT JUDGEMENT", title:"When a Technically Simple Feature Wasn't the Right Product Decision", tags:["Product Strategy","Stakeholders","Workflow Design"], summary:"Challenged a technically simple upload feature because it could reinforce the workflow the product was trying to replace.", details:[["Context","Engineering proposed allowing users to upload Excel files to automatically populate the product."],["My concern","If every user could upload Excel files, users might continue doing their core work in Excel and use the platform mainly as a data-upload tool."],["Product goal","Move the user's core workflow into the platform."],["Decision","After discussion with engineering and stakeholders, upload functionality was made available to administrators rather than normal users."],["Why it mattered","The constraint aligned the feature with the intended workflow instead of optimising only for technical convenience."],["Reflection","A feature being technically possible does not mean it supports the desired user behaviour or product strategy."]] }
 ];
 
-function Header(){const [open,setOpen]=useState(false); const links=[["Work","#work"],["How I Think","#how"],["About","#about"],["Resume","#resume"],["Contact","#contact"]]; return <header className="sticky top-0 z-50 border-b border-line/80 bg-paper/90 backdrop-blur"><div className="container-page flex h-16 items-center justify-between"><a href="#top" className="focus-ring text-sm font-semibold">Gouse<span className="text-sage">.</span></a><nav className="hidden gap-7 md:flex">{links.map(([l,h])=><a className="focus-ring text-sm text-slate-600 hover:text-ink" key={h} href={h}>{l}</a>)}</nav><button className="focus-ring flex h-11 w-11 items-center justify-center rounded-xl md:hidden" aria-label="Toggle navigation" onClick={()=>setOpen(!open)}>{open?<X size={20}/>:<Menu size={20}/>}</button></div>{open&&<nav className="border-t border-line bg-paper px-5 py-4 md:hidden">{links.map(([l,h])=><a onClick={()=>setOpen(false)} className="block min-h-11 py-3 text-sm" key={h} href={h}>{l}</a>)}</nav>}</header>}
+function Header(){const [open,setOpen]=useState(false); const links=[["Work","#work"],["How I Think","#how"],["About","#about"],["Resume","#resume"],["Contact","#contact"]]; return <header className="sticky top-0 z-50 border-b border-line/80 bg-paper/90 backdrop-blur"><div className="container-page flex h-16 items-center justify-between"><a href="#top" className="focus-ring text-sm font-semibold">Gouse<span className="text-sage">.</span></a><nav className="hidden gap-7 md:flex">{links.map(([l,h])=><a className="focus-ring text-sm text-slate-600 hover:text-ink" key={h} href={h}>{l}</a>)}</nav><button className="focus-ring flex h-11 w-11 items-center justify-center rounded-xl md:hidden" aria-label="Toggle navigation" onClick={()=>setOpen(!open)}>{open?<X aria-hidden="true" size={20}/>:<Menu aria-hidden="true" size={20}/>}</button></div>{open&&<nav className="border-t border-line bg-paper px-5 py-4 md:hidden">{links.map(([l,h])=><a onClick={()=>setOpen(false)} className="block min-h-11 py-3 text-sm" key={h} href={h}>{l}</a>)}</nav>}</header>}
 
 function ArbourVisual({ id }: { id: string }) {
   const labels: Record<string, string[]> = {
@@ -157,7 +157,7 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
             <p className="muted mt-4 max-w-3xl text-base">{c.summary}</p>
           </div>
           <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-slate-600">
-            <ChevronDown size={18} className={expanded ? "rotate-180 transition-transform" : "transition-transform"} />
+            <ChevronDown aria-hidden="true" size={18} className={expanded ? "rotate-180 transition-transform" : "transition-transform"} />
           </span>
         </div>
         <div className="mt-7 flex flex-wrap gap-2">{c.tags.map((tag) => <span className="pill" key={tag}>{tag}</span>)}</div>
@@ -229,13 +229,13 @@ export default function Home() {
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <a className="focus-ring inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="#work">
-                  View my work <ArrowDownRight size={16} />
+                  View my work <ArrowDownRight aria-hidden="true" size={16} />
                 </a>
                 <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href="/resume.pdf" download>
-                  Download CV <Download size={16} />
+                  Download CV <Download aria-hidden="true" size={16} />
                 </a>
                 <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href={linkedinHref} target="_blank" rel="noreferrer">
-                  LinkedIn <ExternalLink size={15} />
+                  LinkedIn <ExternalLink aria-hidden="true" size={15} />
                 </a>
               </div>
             </div>
@@ -378,9 +378,9 @@ export default function Home() {
             <h2 className="section-title">Interested in working together?</h2>
             <p className="muted mt-5">For product, product operations, technical product or digital transformation conversations, the easiest route is email or LinkedIn.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a className="focus-ring inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="mailto:mohiddinmohammed24@gmail.com"><Mail size={16} /> Email</a>
-              <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href={linkedinHref} target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a>
-              <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href="https://github.com/MohiddinMohammed" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a>
+              <a className="focus-ring inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white" href="mailto:mohiddinmohammed24@gmail.com"><Mail aria-hidden="true" size={16} /> Email</a>
+              <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href={linkedinHref} target="_blank" rel="noreferrer"><Linkedin aria-hidden="true" size={16} /> LinkedIn</a>
+              <a className="focus-ring inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold" href="https://github.com/MohiddinMohammed" target="_blank" rel="noreferrer"><Github aria-hidden="true" size={16} /> GitHub</a>
             </div>
           </div>
         </section>
