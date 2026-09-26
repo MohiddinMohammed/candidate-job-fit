@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     title: 'Gouse Mohiddin Mohammed — Product Owner | Technical Product Manager',
     description: 'Product Owner and Technical Product Manager focused on B2B SaaS, AI products, automation and technical product delivery.',
     siteName: 'Gouse Mohiddin Mohammed',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Gouse Mohiddin Mohammed — Product Owner · Technical Product Manager · AI & SaaS' }],
     locale: 'en_DE',
   },
   twitter: {
