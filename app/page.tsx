@@ -145,66 +145,112 @@ function ArbourVisual({ id }: { id: string }) {
 
 function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean }) {
   const [expanded, setExpanded] = useState(false);
+
   return (
-    <article id={c.id} className={`scroll-mt-24 group overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${featured ? "featured-case lg:shadow-sm" : ""}`}>
-      <button type="button" onClick={() => setExpanded(!expanded)} aria-expanded={expanded} className="focus-ring block w-full p-6 text-left sm:p-8">
-        <div className="flex items-start justify-between gap-5">
-          <div className="max-w-4xl">
-            <p className="eyebrow">{c.label}</p>
-            <h3 className={`mt-2 font-semibold tracking-tight ${featured ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl"}`}>{c.title}</h3>
-            <p className="muted mt-4 max-w-3xl text-base">{c.summary}</p>
-          </div>
-          <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-slate-600">
-            <ChevronDown aria-hidden="true" size={18} className={expanded ? "rotate-180 transition-transform" : "transition-transform"} />
-          </span>
-        </div>
-        <div className="mt-7 flex flex-wrap gap-2">{c.tags.map((tag) => <span className="pill" key={tag}>{tag}</span>)}</div>
-        <div className="mt-6 rounded-xl border border-sage/20 bg-mint/60 p-4">
-          <p className="eyebrow">Outcome</p>
-          <p className="mt-2 text-sm font-medium leading-6 text-ink">{c.outcome}</p>
-        </div>
-        {!featured && <ArbourVisual id={c.id} />}
-        {c.meta && <div className="mt-7 grid gap-3 border-t border-line pt-5 sm:grid-cols-3">{c.meta.map(([key,value]) => <div key={key}><p className="eyebrow">{key}</p><p className="mt-1 text-sm font-medium text-ink">{value}</p></div>)}</div>}
-        <div className="mt-6 text-sm font-semibold text-sage">{expanded ? "Close case study" : "Read full case study"} <span className="ml-1">→</span></div>
-      </button>
-      {expanded && <div className="case-detail border-t border-line bg-paper/50 px-6 pb-8 sm:px-8 sm:pb-10"><div className="pt-8">
-        {c.flow && <><p className="eyebrow">Product flow</p><div className="mt-4 flex flex-wrap items-center gap-2">{c.flow.map((step,index) => <div key={step} className="flex items-center gap-2"><span className="rounded-full border border-line bg-white px-3 py-2 text-xs font-medium text-slate-700">{step}</span>{index < c.flow!.length - 1 && <span className="hidden text-slate-300 sm:inline">→</span>}</div>)}</div></>}
-        {c.visuals && <div className="mt-10 rounded-2xl border border-line bg-white p-5 sm:p-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+    <>
+      <article id={c.id} className={\`scroll-mt-24 group overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md \${featured ? "featured-case lg:shadow-sm" : ""}\`}>
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          aria-expanded={expanded}
+          aria-controls={\`\${c.id}-dialog\`}
+          className="focus-ring block w-full p-6 text-left sm:p-8"
+        >
+          <div className="flex items-start justify-between gap-5">
             <div>
-              <p className="eyebrow">Product concept · FIL</p>
-              <h4 className="mt-2 text-xl font-semibold tracking-tight">From communication to action</h4>
+              <p className="eyebrow">{c.label}</p>
+              <h3 className={\`mt-2 font-semibold tracking-tight \${featured ? "text-3xl sm:text-4xl" : "text-2xl sm:text-3xl"}\`}>{c.title}</h3>
+              <p className="muted mt-4 max-w-3xl text-base">{c.summary}</p>
             </div>
-            <p className="max-w-md text-xs leading-5 text-slate-500">Selected early wireframe concepts showing how email, AI-assisted composition and calendar workflows were connected.</p>
+            <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-slate-600">
+              <ChevronDown aria-hidden="true" size={18} />
+            </span>
           </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {c.visuals.map((visual, index) => (
-              <div key={visual.title} className={`group overflow-hidden rounded-2xl border border-line bg-paper ${index === 1 ? "md:-translate-y-2 md:shadow-md" : ""}`}>
-                <div className="border-b border-line bg-white px-4 py-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-sm font-semibold">{visual.title}</p>
-                    <span className="rounded-full border border-line px-2 py-1 text-[10px] font-semibold text-sage">{String(index + 1).padStart(2, "0")}</span>
-                  </div>
-                  <p className="mt-1 text-xs leading-5 text-slate-500">{visual.caption}</p>
+          <div className="mt-7 flex flex-wrap gap-2">{c.tags.map((tag) => <span className="pill" key={tag}>{tag}</span>)}</div>
+          <div className="mt-6 rounded-xl border border-sage/20 bg-mint/60 p-4">
+            <p className="eyebrow">Outcome</p>
+            <p className="mt-2 text-sm font-medium leading-6 text-ink">{c.outcome}</p>
+          </div>
+          {!featured && <ArbourVisual id={c.id} />}
+          {c.meta && <div className="mt-7 grid gap-3 border-t border-line pt-5 sm:grid-cols-3">{c.meta.map(([key,value]) => <div key={key}><p className="eyebrow">{key}</p><p className="mt-1 text-sm font-medium text-ink">{value}</p></div>)}</div>}
+          <div className="mt-6 text-sm font-semibold text-sage">Read full case study <span className="ml-1">→</span></div>
+        </button>
+      </article>
+
+      {expanded && (
+        <div
+          id={\`\${c.id}-dialog\`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={\`\${c.id}-title\`}
+          className="fixed inset-0 z-50 overflow-y-auto bg-ink/40 p-4 sm:p-8"
+          onClick={() => setExpanded(false)}
+        >
+          <div className="mx-auto min-h-full max-w-6xl py-2 sm:py-6">
+            <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-2xl" onClick={(event) => event.stopPropagation()}>
+              <div className="flex items-start justify-between gap-5 border-b border-line px-6 py-6 sm:px-10 sm:py-7">
+                <div>
+                  <p className="eyebrow">{c.label}</p>
+                  <h3 id={\`\${c.id}-title\`} className="mt-2 text-2xl font-semibold tracking-tight sm:text-4xl">{c.title}</h3>
+                  <p className="muted mt-3 max-w-3xl text-sm sm:text-base">{c.summary}</p>
                 </div>
-                <div className="p-4">
-                  <div className="min-h-[190px] rounded-xl border border-slate-300 bg-slate-50 p-3 text-[8px] text-slate-500 shadow-sm transition-transform duration-300 group-hover:scale-[1.015]">
-                    {visual.type === "email" && <><div className="flex gap-2 border-b border-slate-200 pb-2 font-semibold"><span>Email</span><span>Dashboard</span><span>Calendar</span><span>Notifications</span></div><div className="mt-4 grid grid-cols-[62px_1fr] gap-3"><div className="space-y-2 font-medium"><div>Inbox</div><div>Starred</div><div>Sent</div><div>Unread</div></div><div className="space-y-2"><div className="h-7 rounded bg-slate-200"/><div className="h-7 rounded bg-slate-200"/><div className="h-7 rounded bg-slate-200"/><div className="h-7 rounded bg-slate-200"/></div></div><div className="mt-4 rounded border border-slate-200 bg-white p-2 font-medium">Smart Actions · AI reads the thread</div></>}
-                    {visual.type === "compose" && <><div className="flex gap-2 border-b border-slate-200 pb-2 font-semibold"><span>Email</span><span>Dashboard</span><span>Calendar</span><span>Compose</span></div><div className="mt-4 font-semibold">Email subject</div><div className="mt-2 h-5 w-2/3 rounded bg-slate-200"/><div className="mt-3 h-14 rounded border border-slate-200 bg-white"/><div className="mt-3 rounded border border-slate-200 bg-white p-2">AI-suggested response</div><div className="mt-3 flex gap-1"><span className="rounded border border-slate-300 px-2 py-1">Regenerate</span><span className="rounded border border-slate-300 px-2 py-1">Send</span><span className="rounded border border-slate-300 px-2 py-1">Save draft</span></div></>}
-                    {visual.type === "calendar" && <><div className="flex items-center justify-between border-b border-slate-200 pb-2 font-semibold"><span>Calendar</span><span>Month</span></div><div className="mt-3 grid grid-cols-7 gap-px bg-slate-200">{Array.from({length:28}).map((_,index) => <div key={index} className="h-5 bg-white"/>)}</div><div className="mt-4 flex gap-2"><span className="rounded border border-slate-300 px-2 py-1">+ New Meeting</span><span className="rounded border border-slate-300 px-2 py-1">Search</span></div></>}
+                <button type="button" aria-label="Close case study" onClick={() => setExpanded(false)} className="focus-ring flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line bg-paper text-slate-600">
+                  <X aria-hidden="true" size={18} />
+                </button>
+              </div>
+
+              <div className="bg-paper/50 px-6 pb-8 sm:px-10 sm:pb-12">
+                <div className="pt-8">
+                  <div className="rounded-xl border border-sage/20 bg-mint/60 p-4">
+                    <p className="eyebrow">Outcome</p>
+                    <p className="mt-2 text-sm font-medium leading-6 text-ink">{c.outcome}</p>
                   </div>
+
+                  {c.meta && <div className="mt-7 grid gap-4 border-b border-line pb-7 sm:grid-cols-3">{c.meta.map(([key,value]) => <div key={key}><p className="eyebrow">{key}</p><p className="mt-1 text-sm font-medium text-ink">{value}</p></div>)}</div>}
+
+                  {c.flow && <><p className="eyebrow mt-8">Product flow</p><div className="mt-4 flex flex-wrap items-center gap-2">{c.flow.map((step,index) => <div key={step} className="flex items-center gap-2"><span className="rounded-full border border-line bg-white px-3 py-2 text-xs font-medium text-slate-700">{step}</span>{index < c.flow!.length - 1 && <span className="hidden text-slate-300 sm:inline">→</span>}</div>)}</div></>}
+
+                  {c.visuals && <div className="mt-10 rounded-2xl border border-line bg-white p-5 sm:p-6">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                      <div>
+                        <p className="eyebrow">Product concept · FIL</p>
+                        <h4 className="mt-2 text-xl font-semibold tracking-tight">From communication to action</h4>
+                      </div>
+                      <p className="max-w-md text-xs leading-5 text-slate-500">Selected early wireframe concepts showing how email, AI-assisted composition and calendar workflows were connected.</p>
+                    </div>
+                    <div className="mt-6 grid gap-4 md:grid-cols-3">
+                      {c.visuals.map((visual, index) => (
+                        <div key={visual.title} className={\`group overflow-hidden rounded-2xl border border-line bg-paper \${index === 1 ? "md:-translate-y-2 md:shadow-md" : ""}\`}>
+                          <div className="border-b border-line bg-white px-4 py-4">
+                            <div className="flex items-center justify-between gap-3">
+                              <p className="text-sm font-semibold">{visual.title}</p>
+                              <span className="rounded-full border border-line px-2 py-1 text-[10px] font-semibold text-sage">{String(index + 1).padStart(2, "0")}</span>
+                            </div>
+                            <p className="mt-1 text-xs leading-5 text-slate-500">{visual.caption}</p>
+                          </div>
+                          <div className="p-4">
+                            <div className="min-h-[190px] rounded-xl border border-slate-300 bg-slate-50 p-3 text-[8px] text-slate-500 shadow-sm transition-transform duration-300 group-hover:scale-[1.015]">
+                              {visual.type === "email" && <><div className="flex gap-2 border-b border-slate-200 pb-2 font-semibold"><span>Email</span><span>Dashboard</span><span>Calendar</span><span>Notifications</span></div><div className="mt-4 grid grid-cols-[62px_1fr] gap-3"><div className="space-y-2 font-medium"><div>Inbox</div><div>Starred</div><div>Sent</div><div>Unread</div></div><div className="space-y-2"><div className="h-7 rounded bg-slate-200"/><div className="h-7 rounded bg-slate-200"/><div className="h-7 rounded bg-slate-200"/><div className="h-7 rounded bg-slate-200"/></div></div><div className="mt-4 rounded border border-slate-200 bg-white p-2 font-medium">Smart Actions · AI reads the thread</div></>}
+                              {visual.type === "compose" && <><div className="flex gap-2 border-b border-slate-200 pb-2 font-semibold"><span>Email</span><span>Dashboard</span><span>Calendar</span><span>Compose</span></div><div className="mt-4 font-semibold">Email subject</div><div className="mt-2 h-5 w-2/3 rounded bg-slate-200"/><div className="mt-3 h-14 rounded border border-slate-200 bg-white"/><div className="mt-3 rounded border border-slate-200 bg-white p-2">AI-suggested response</div><div className="mt-3 flex gap-1"><span className="rounded border border-slate-300 px-2 py-1">Regenerate</span><span className="rounded border border-slate-300 px-2 py-1">Send</span><span className="rounded border border-slate-300 px-2 py-1">Save draft</span></div></>}
+                              {visual.type === "calendar" && <><div className="flex items-center justify-between border-b border-slate-200 pb-2 font-semibold"><span>Calendar</span><span>Month</span></div><div className="mt-3 grid grid-cols-7 gap-px bg-slate-200">{Array.from({length:28}).map((_,index) => <div key={index} className="h-5 bg-white"/>)}</div><div className="mt-4 flex gap-2"><span className="rounded border border-slate-300 px-2 py-1">+ New Meeting</span><span className="rounded border border-slate-300 px-2 py-1">Search</span></div></>}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>}
+
+                  <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">{c.details.map(([key,value]) => <div key={key}><p className="eyebrow">{key}</p><div className="mt-2 text-sm leading-7 text-slate-700">{value}</div></div>)}</div>
+                  {c.technical && <div className="mt-10 border-t border-line pt-6"><p className="eyebrow">Technical contribution</p><div className="mt-4 flex flex-wrap gap-2">{c.technical.map((item) => <span className="pill" key={item}>{item}</span>)}</div></div>}
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>}
-        <div className="mt-9 grid gap-x-10 gap-y-8 sm:grid-cols-2">{c.details.map(([key,value]) => <div key={key}><p className="eyebrow">{key}</p><div className="mt-2 text-sm leading-7 text-slate-700">{value}</div></div>)}</div>
-        {c.technical && <div className="mt-9 border-t border-line pt-6"><p className="eyebrow">Technical contribution</p><div className="mt-4 flex flex-wrap gap-2">{c.technical.map((item) => <span className="pill" key={item}>{item}</span>)}</div></div>}
-      </div></div>}
-    </article>
+        </div>
+      )}
+    </>
   );
 }
-
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState<Category>("B2B SaaS");
   const visibleCases = cases.filter((c) => c.category.includes(activeCategory));
@@ -288,9 +334,9 @@ export default function Home() {
           <div className="mt-10">
             <div>
               <p className="eyebrow">Start here</p>
-              <h3 className="mt-2 text-xl font-semibold tracking-tight">Three stories that show how I work</h3>
+              <h3 className="mt-2 text-xl font-semibold tracking-tight">How I turn ambiguity into product outcomes</h3>
               <p className="muted mt-2 max-w-2xl text-sm">
-                AI product thinking, product judgement and technical execution — the three threads I want a recruiter to see first.
+                Three cases that show the product judgement, AI thinking and technical execution behind my work.
               </p>
             </div>
             <div className="mt-6 grid gap-5 lg:grid-cols-3">
