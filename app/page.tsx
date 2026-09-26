@@ -114,6 +114,37 @@ const cases: CaseStudy[] = [
 
 function Header(){const [open,setOpen]=useState(false); const links=[["Work","#work"],["How I Think","#how"],["About","#about"],["Resume","#resume"],["Contact","#contact"]]; return <header className="sticky top-0 z-50 border-b border-line/80 bg-paper/90 backdrop-blur"><div className="container-page flex h-16 items-center justify-between"><a href="#top" className="focus-ring text-sm font-semibold">Gouse<span className="text-sage">.</span></a><nav className="hidden gap-7 md:flex">{links.map(([l,h])=><a className="focus-ring text-sm text-slate-600 hover:text-ink" key={h} href={h}>{l}</a>)}</nav><button className="focus-ring rounded-lg p-2 md:hidden" aria-label="Toggle navigation" onClick={()=>setOpen(!open)}>{open?<X size={20}/>:<Menu size={20}/>}</button></div>{open&&<nav className="border-t border-line bg-paper px-5 py-4 md:hidden">{links.map(([l,h])=><a onClick={()=>setOpen(false)} className="block py-3 text-sm" key={h} href={h}>{l}</a>)}</nav>}</header>}
 
+function ArbourVisual({ id }: { id: string }) {
+  const labels: Record<string, string[]> = {
+    duplicates: ["Upload", "Match", "Resolve"],
+    "pipeline-intelligence": ["Signals", "Segments", "History"],
+    "consolidated-workspace": ["Sheets", "Unified view", "Export"],
+    reporting: ["Filter", "Preview", "Export"],
+    collaboration: ["Share", "Edit", "History"],
+    "historical-investments": ["Import", "Match", "Context"],
+  };
+  const items = labels[id] ?? ["Problem", "Decision", "Build"];
+
+  return (
+    <div className="mt-7 overflow-hidden rounded-xl border border-line bg-paper p-4">
+      <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+        <span>Product workflow</span>
+        <span>ARBOUR</span>
+      </div>
+      <div className="mt-4 grid grid-cols-3 gap-2">
+        {items.map((item, index) => (
+          <div key={item} className="relative">
+            <div className={`rounded-lg border px-2 py-3 text-center text-[11px] font-semibold ${index === 1 ? "border-sage/40 bg-white text-ink shadow-sm" : "border-line bg-white/70 text-slate-600"}`}>
+              <span className="mr-1 text-[9px] text-sage">0{index + 1}</span>{item}
+            </div>
+            {index < items.length - 1 && <span className="absolute -right-2 top-1/2 hidden -translate-y-1/2 text-slate-300 sm:block">→</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean }) {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -130,6 +161,7 @@ function CaseCard({ c, featured = false }: { c: CaseStudy; featured?: boolean })
           </span>
         </div>
         <div className="mt-7 flex flex-wrap gap-2">{c.tags.map((tag) => <span className="pill" key={tag}>{tag}</span>)}</div>
+        {!featured && <ArbourVisual id={c.id} />}
         {c.meta && <div className="mt-7 grid gap-3 border-t border-line pt-5 sm:grid-cols-3">{c.meta.map(([key,value]) => <div key={key}><p className="eyebrow">{key}</p><p className="mt-1 text-sm font-medium text-ink">{value}</p></div>)}</div>}
         <div className="mt-6 text-sm font-semibold text-sage">{expanded ? "Close case study" : "Read full case study"} <span className="ml-1">→</span></div>
       </button>
